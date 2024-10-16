@@ -1,0 +1,13 @@
+[package]
+name = "New"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+server_core = { path = "./server_core" }
+tokio = { version = "1", features = ["full"] }
+clap = { version = "4.5.4", features = ["cargo"] }
+base64 = "0.22.1"
+local-ip-address = "0.6.3"
+rustyline = "14.0"
+clippers = "0.1.2"
