@@ -59,6 +59,17 @@ or
   curl -o install_dependecies.sh https://raw.githubusercontent.com/Jsmoreira02/KoopaShell/main/install_dependecies.sh && bash install_dependecies.sh
 ```
 
+## Dependecies:
+
+### Debian/Ubuntu:
+> sudo apt-get install -y cmake g++ gcc zlib1g-dev libx11-dev libxext-dev libxrender-dev libxrandr-dev libxinerama-dev libxcursor-dev libxfixes-dev libx11-xcb-dev libxss-dev libxdmcp-dev libpng-dev pkg-config
+
+### Fedora/RHEL-based:
+> sudo dnf install -y cmake gcc-c++ gcc zlib-devel libX11-devel libXext-devel libXrender-devel libXrandr-devel libXinerama-devel libXcursor-devel libXfixes-devel libXdmcp-devel libXss-devel libpng-devel pkg-config
+
+### Arch Linux-based: 
+> sudo pacman -Sy --needed cmake gcc gcc-libs zlib libx11 libxext libxrender libxrandr libxinerama libxcursor libxfixes libxdmcp libxss libpng pkgconf
+
 ## Tribute:
 
 I'd like to take a moment to express my absolute admiration for these offensive security programmers/researchers. They inspired me to decide to create this tool, and I really hope I can achieve this level of capability.
