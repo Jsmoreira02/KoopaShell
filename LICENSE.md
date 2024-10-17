@@ -1,6 +1,12 @@
 Copyright (c) 2024 João Pedro Moreira (Jsmoreira02)
 
-This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License.
+This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License. You are free to share, copy, and redistribute the material in any medium or format for any purpose, even commercially, under the following terms:
+
+1. **Attribution**: You must give appropriate credit to the original author, provide a link to the license, and indicate if changes were made. You may do this in any reasonable manner, but not in any way that suggests the author endorses you or your use.
+
+2. **No Derivatives**: If you remix, transform, or build upon the material, you may not distribute the modified material.
+
+3. **Contributions**: Contributions to the code are welcome, and all contributors will be recognized for their proposed modifications. However, the original author retain the right to reuse and adapt any contributed code.
 
 # Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International
 
