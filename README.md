@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/badge/Language%20-Rust-darkorange.svg" style="max-width: 100%;">
     <img src="https://img.shields.io/badge/Target OS%20-Linux, Windows-darkblue.svg" style="max-width: 100%;">
     <img src="https://img.shields.io/badge/Cargo builds%20-clippers, rustyline, clap, base64-beige.svg" style="max-width: 100%;">
-    <img src="https://img.shields.io/badge/License%20-GPL_2.0-lightgreen.svg" style="max-width: 100%;">
+    <img src="https://img.shields.io/badge/License%20-CC BY_ND 4.0-lightgreen.svg" style="max-width: 100%;">
     <img src="https://img.shields.io/badge/Type%20-C2 Like | Multi Handler-purple.svg" style="max-width: 100%;">
     
 </div></br>
