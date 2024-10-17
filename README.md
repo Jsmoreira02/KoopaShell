@@ -49,6 +49,7 @@ https://github.com/user-attachments/assets/930dcd80-e409-4a02-aedb-8dbe44472945
 ```
   git clone https://github.com/Jsmoreira02/KoopaShell.git
   cd KoopaShell
+  chmod +x install_dependencies.sh
   bash install_dependecies.sh
 ```
 
