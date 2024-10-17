@@ -60,12 +60,12 @@ or
 
 ## Tribute:
 
-I would like to take a moment to express my absolute admiration for these tools and the authors. They inspired me to decide to create this tool, and I really hope I can reach this level of ability.
+I'd like to take a moment to express my absolute admiration for these offensive security programmers/researchers. They inspired me to decide to create this tool, and I really hope I can achieve this level of capability.
 
-- [Villain Framework](https://github.com/t3l3machus/Villain)
-- [ALL IN ONE Hacking Tool For Hackers](https://github.com/Z4nzu/hackingtool)
-- [BlackMamba](https://github.com/loseys/BlackMamba)
-- [Tempest](https://github.com/Jsmoreira02/Tempest)
+- [@t3l3machus](https://github.com/t3l3machus)
+- [@Z4nzu](https://github.com/Z4nzu)
+- [@loseys](https://github.com/loseys)
+- [@Teach2Breach](https://github.com/Teach2Breach)
 
 # Warning:    
 > I am not responsible for any illegal use or damage caused by this tool. It was written for fun, not evil and is intended to raise awareness about cybersecurity.
