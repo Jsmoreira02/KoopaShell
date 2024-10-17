@@ -38,7 +38,7 @@ async fn main() {
 
     let arguments = command!()
         .arg(Arg::new("Server IP").default_value("0.0.0.0").help("Server IP to listen to connections").required(false))
-        .arg(Arg::new("Server Port").default_value("443").help("Server Port").required(false))
+        .arg(Arg::new("Server Port").default_value("4443").help("Server Port").required(false))
         .get_matches();
 
     let ip: &String = arguments.get_one::<String>("Server IP").expect("IP is required");
