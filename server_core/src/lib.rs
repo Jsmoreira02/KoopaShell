@@ -7,6 +7,7 @@ use crate::start_listener::{start_listener, start_connection_thread};
 use std::io::{self, Write};
 
 pub type ConnectionId = String;
+pub type IdNumber = u32;
 
 #[derive(Debug)]
 pub struct Connection {
@@ -20,6 +21,7 @@ pub struct Connection {
 
 pub struct Server {
     pub connections: Arc<Mutex<HashMap<ConnectionId, Connection>>>,
+    pub index_id: Arc<Mutex<HashMap<IdNumber, ConnectionId>>>,
     pub stdout_mutex: Arc<Mutex<()>>,
 }
 
@@ -28,6 +30,7 @@ impl Server {
     pub fn new() -> Self {
         Server {
             connections: Arc::new(Mutex::new(HashMap::new())),
+            index_id: Arc::new(Mutex::new(HashMap::new())),
             stdout_mutex: Arc::new(Mutex::new(())),
         }
     }
@@ -55,8 +58,11 @@ impl Server {
     pub fn list_connections(&self) {
         
         let connections: std::sync::MutexGuard<'_, HashMap<String, Connection>> = self.connections.lock().unwrap();
+        let id_number: std::sync::MutexGuard<'_, HashMap<u32, String>> = self.index_id.lock().unwrap();
         
         for (id, conn) in connections.iter() {
+
+            let index: Option<&u32> = id_number.iter().find(|(_, v)| *v == id).map(|(k, _)| k);
 
             let status = if conn.active {
                 if conn.suspended {
@@ -75,7 +81,13 @@ impl Server {
                 _ => "\x1b[37;1m",
             };
 
-            println!("\x1b[38;5;2mID:\x1b[0m {} | \x1b[38;5;2mIP:\x1b[0m {} | \x1b[37;1mStatus:\x1b[0m {}{}\x1b[0m", id, conn.peer_addr, status_color, status);
+            if let Some(index) = index {
+                println!("[{}] \x1b[38;5;2mID:\x1b[0m {} | \x1b[38;5;2mIP:\x1b[0m {} | \x1b[37;1mStatus:\x1b[0m {}{}\x1b[0m", 
+                    index, id, conn.peer_addr, status_color, status);
+            } else {
+                println!("\x1b[38;5;2mID:\x1b[0m {} | \x1b[38;5;2mIP:\x1b[0m {} | \x1b[37;1mStatus:\x1b[0m {}{}\x1b[0m", 
+                id, conn.peer_addr, status_color, status);
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-use crate::{Server, Connection};
+use crate::{Connection, Server};
 use std::sync::{Arc, Mutex, mpsc};
 use std::net::TcpStream;
 use std::io::{self, Read, Write};
@@ -17,9 +17,12 @@ pub fn start_listener(server: &Server, address: &str) {
     let listener: std::net::TcpListener = std::net::TcpListener::bind(address).expect("[\x1b[31;1mX\x1b[0m] Server cannot be started!");
 
     let connections: Arc<Mutex<std::collections::HashMap<String, Connection>>> = Arc::clone(&server.connections);
+    let register_id: Arc<Mutex<std::collections::HashMap<u32, String>>> = Arc::clone(&server.index_id);
     let stdout_mutex: Arc<Mutex<()>> = Arc::clone(&server.stdout_mutex);
 
     std::thread::spawn(move || {
+        
+        let mut number: u32 = 0;
 
         for stream in listener.incoming() {
             match stream {
@@ -27,6 +30,7 @@ pub fn start_listener(server: &Server, address: &str) {
                 Ok(stream) => {
                 
                     let id: String = Server::generate_random_id();
+
                     let ip: String = ip_connections(&stream);
                     let cloned_stream: TcpStream = stream.try_clone().unwrap();
                     let (tx, rx) = mpsc::channel();
@@ -44,7 +48,10 @@ pub fn start_listener(server: &Server, address: &str) {
 
                     {
                         let mut connections = connections.lock().unwrap();
-                        connections.insert(id.clone(), connection);
+                        let mut register_id = register_id.lock().unwrap();
+
+                        number += 1;
+                        connections.insert(id.clone(), connection); register_id.insert(number, id.clone());
                     }
 
                     {
