@@ -61,19 +61,28 @@ async fn main() {
             Ok(command) => {
                 
                 let _ = rl.add_history_entry(command.as_str()); 
-                let command = command.trim();
+                let command: &str = command.trim();
 
                 if command.starts_with("connect ") {
-                    let id: String = command.replacen("connect ", "", 1);
-                    connect_to_shell(&server, &id);
+                    let input_id: String = command.replacen("connect ", "", 1);
+
+                    if let Some(id) = resolve_id(&server, &input_id) {
+                        connect_to_shell(&server, &id);
+                    }
                 } 
                 else if command.starts_with("resume ") {
-                    let id: String = command.replacen("resume ", "", 1);
-                    server.resume_connection(&id);
+                    let input_id: String = command.replacen("resume ", "", 1);
+
+                    if let Some(id) = resolve_id(&server, &input_id) {
+                        server.resume_connection(&id);
+                    }
                 } 
                 else if command.starts_with("kill ") {
-                    let id: String = command.replacen("kill ", "", 1);
-                    server.kill(&id);
+                    let input_id: String = command.replacen("kill ", "", 1);
+
+                    if let Some(id) = resolve_id(&server, &input_id) {
+                        server.kill(&id);
+                    }
                 } 
                 else if command.starts_with("generate_payload ") {
                     let os: String = command.replacen("generate_payload ", "", 1);
@@ -192,5 +201,23 @@ fn generate_payload(ip: &str, port: &str, os: &str) -> String {
         },
 
         _ => { return "\n[\x1b[32;1mX\x1b[0m] Not supported!\n".to_string() },
+    }
+}
+
+fn resolve_id(server: &Server, input: &str) -> Option<String> {
+
+    if let Ok(number) = input.parse::<u32>() {
+
+        let id_number: std::sync::MutexGuard<'_, std::collections::HashMap<u32, String>> = server.index_id.lock().unwrap();
+        if let Some(full_id) = id_number.get(&number) {
+
+            return Some(full_id.clone());
+        } 
+        else {
+            println!("[X] No session found for number {}", number);
+            return None;
+        }
+    } else {
+        Some(input.to_string())
     }
 }

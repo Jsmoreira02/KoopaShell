@@ -17,6 +17,7 @@ impl PathCompleter {
             commands: vec![
                 "generate_payload".into(),
                 "list".into(),
+                "sessions".into(),
                 "kill".into(),
                 "connect".into(),
                 "resume".into(),
