@@ -43,15 +43,15 @@ impl Server {
 
     pub fn generate_random_id() -> String {
         
-        use rand::{distributions::Alphanumeric, Rng};
-    
-        let rng = rand::thread_rng();
-    
-        let part1: String = rng.clone().sample_iter(&Alphanumeric).take(6).map(char::from).collect();
-        let part2: String = rng.clone().sample_iter(&Alphanumeric).take(6).map(char::from).collect();
-        let part3: String = rng.clone().sample_iter(&Alphanumeric).take(6).map(char::from).collect();
-    
-        format!("{}-{}-{}", part1, part2, part3)
+        use rand::Rng;
+
+        let mut rng: rand::prelude::ThreadRng = rand::thread_rng();
+        
+        let part1: u32 = rng.gen(); 
+        let part2: u16 = rng.gen(); 
+        let part3: u16 = rng.gen();
+        
+        format!("{:08x}-{:04x}-{:04x}", part1, part2, part3)
     }    
 
 
