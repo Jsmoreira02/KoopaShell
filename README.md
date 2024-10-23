@@ -18,7 +18,7 @@
 
 ## About:
 
-Koopa Shell is an advanced tool developed in Rust, designed to streamline and enhance reverse shell handling. As a Multiple Reverse TCP Shell Handler and Stage 0/1 C2 Framework, it elevates shell interactions by generating obfuscated PowerShell payload, ensuring both stealth and efficiency. Koopa Shell supports seamless connections across Linux and Windows environments, making it a versatile for working in diverse infrastructures.
+Koopa Shell is an advanced tool developed in Rust, designed as a Multiple Reverse TCP Shell Handler and Stage 0/1 C2 Framework, it elevates shell interactions by generating obfuscated PowerShell payload, ensuring both stealth and efficiency. Koopa Shell supports seamless connections across Linux and Windows environments, making it a versatile for working in diverse infrastructures.
 
 - Support for multiple reverse TCP connections.
 - Make quick and easy transitions between all your reverse shell connections
@@ -31,6 +31,11 @@ Made for pentest operations or attack simulations focused on evading initial det
 
 | **New features and implementations will be continually added to the project** |
 
+## New Features:
+
+- 📌**NEW**: Added an easier way to connect to and navigate through sessions (Sessions index)
+- 📌**NEW**: The format of the session IDs has been changed to hexadecimal (16 bit) code.
+- 🕒 **Coming soon**: New payload types for linux and windows
 
 ## Usage:
 
