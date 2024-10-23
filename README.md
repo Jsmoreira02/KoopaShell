@@ -84,9 +84,12 @@ I'd like to take a moment to express my absolute admiration for these offensive 
 - [@loseys](https://github.com/loseys)
 - [@Teach2Breach](https://github.com/Teach2Breach)
 
+
+### Contributions:
+- 💪 If you have an idea for improvement and want to contribute to the performance of the code, you are more than welcome to submit a pull request.
+
 # Warning:    
 > I am not responsible for any illegal use or damage caused by this tool. It was written for fun, not evil and is intended to raise awareness about cybersecurity.
-
 
 ***Have a good hack :D***
 
