@@ -35,7 +35,7 @@ Made for pentest operations or attack simulations focused on evading initial det
 
 - 📌**NEW**: Added an easier way to connect to and navigate through sessions (Sessions index)
 - 📌**NEW**: The format of the session IDs has been changed to hexadecimal (16 bit) code.
-- 🕒 **Coming soon**: New payload types for linux and windows
+- 📌**NEW**: Create your own customized and more effective payloads at src/shell.rs
 
 ## Usage:
 
