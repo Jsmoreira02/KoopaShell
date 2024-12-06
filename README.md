@@ -67,13 +67,14 @@ or
 ## Dependecies:
 
 ### Debian/Ubuntu:
-> sudo apt-get install -y cmake g++ gcc zlib1g-dev libx11-dev libxext-dev libxrender-dev libxrandr-dev libxinerama-dev libxcursor-dev libxfixes-dev libx11-xcb-dev libxss-dev libxdmcp-dev libpng-dev pkg-config
+> sudo apt-get install -y build-essential pkg-config libssl-dev xclip xsel libx11-dev xorg-dev libxcb-composite0-dev libxext-dev 
 
 ### Fedora/RHEL-based:
-> sudo dnf install -y cmake gcc-c++ gcc zlib-devel libX11-devel libXext-devel libXrender-devel libXrandr-devel libXinerama-devel libXcursor-devel libXfixes-devel libXdmcp-devel libXss-devel libpng-devel pkg-config
+> sudo dnf groupinstall "Development Tools"
+> sudo dnf install -y cmake gcc-c++ gcc xclip xsel pkg-config ncurses-devel
 
 ### Arch Linux-based: 
-> sudo pacman -Sy --needed cmake gcc gcc-libs zlib libx11 libxext libxrender libxrandr libxinerama libxcursor libxfixes libxdmcp libxss libpng pkgconf
+> sudo pacman -S --needed --noconfirm base-devel gcc openssl pkgconf libxcb libx11
 
 ## Tribute:
 
