@@ -3,7 +3,7 @@ use std::sync::Arc;
 use std::io::{self, Write};
 use std::net::{IpAddr, Shutdown};
 use rustyline::Editor;
-use cli_clipboard::{ClipboardContext, ClipboardProvider}; // Alterado para usar cli-clipboard
+use cli_clipboard::{ClipboardContext, ClipboardProvider};
 
 use base64::{engine::general_purpose, Engine as _};
 use local_ip_address::local_ip;
